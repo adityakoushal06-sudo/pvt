@@ -22,11 +22,6 @@ PAGES = [
     {
         "type": "welcome",
         "eyebrow": "a little something for my little goblin \u2661",
-        "chips": [
-            ["Met", "January"],
-            ["Together", "the 20th"],
-            ["Talking", "every day"],
-        ],
         "title": "Happy 19th, Prerana",
         "text": (
             "Today the world celebrates the day it got you, and nobody "
@@ -497,10 +492,6 @@ HTML = r"""
   .tw{position:absolute;color:#e8b74a;text-shadow:0 0 8px rgba(232,183,74,.7);pointer-events:none;animation:tw 2.6s ease-in-out infinite}
   .welcome .body p{text-align:center}
   .welcome .body p:first-child{font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(17px,4.6vw,19px);color:var(--rose);line-height:1.5}
-  .chips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;margin-top:4px}
-  .chip{background:rgba(255,255,255,.8);border:1.5px solid #f2bccb;border-radius:16px;padding:9px 4px 8px;text-align:center;box-shadow:0 6px 14px rgba(200,30,80,.12)}
-  .chip small{display:block;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#b0476b}
-  .chip b{display:block;font-family:'DM Serif Display',serif;font-weight:400;font-size:17px;color:var(--rose);margin-top:2px}
   .balloons{margin-top:auto;padding-top:14px;display:flex;align-items:flex-end;justify-content:center;gap:26px;width:100%}
   .balloon{animation:bloat 3.4s ease-in-out infinite;transform-origin:50% 100%}
   .balloon:nth-child(2){animation-delay:-1.1s}.balloon:nth-child(3){animation-delay:-2.2s}.balloon:nth-child(4){animation-delay:-.6s}
@@ -814,13 +805,6 @@ DATA.pages.forEach((pg, i) => {
     page.appendChild(box);
   } else if (pg.type === 'welcome') {
     page.appendChild(paragraphs(pg.text, 3));
-    const chips = el('div', 'chips');
-    (pg.chips || []).forEach((c, n) => {
-      const d = el('div', 'chip reveal'); d.style.setProperty('--i', 6 + n * .5);
-      d.appendChild(el('small', null, c[0])); d.appendChild(el('b', null, c[1]));
-      chips.appendChild(d);
-    });
-    page.appendChild(chips);
     const bl = el('div', 'balloons reveal'); bl.style.setProperty('--i', 8);
     ['#e11d5a', '#e8b74a', '#ff85a8', '#e11d5a'].forEach(c => {
       const b = el('div', 'balloon'); b.innerHTML = balloonSVG(c); bl.appendChild(b);
