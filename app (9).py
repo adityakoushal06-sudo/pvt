@@ -20,7 +20,13 @@ YOUR_NAME = "Yours, always"   # how you sign off (e.g. "Forever yours, Rahul")
 # The last page ("final") is the cake & wish page.
 PAGES = [
     {
-        "type": "letter",
+        "type": "welcome",
+        "eyebrow": "a little something for my little goblin \u2661",
+        "chips": [
+            ["Met", "January"],
+            ["Together", "the 20th"],
+            ["Talking", "every day"],
+        ],
         "title": "Happy 19th, Prerana",
         "text": (
             "Today the world celebrates the day it got you, and nobody "
@@ -480,6 +486,27 @@ HTML = r"""
   .rbtn.done svg{animation:thump .6s}
   @keyframes thump{0%{transform:scale(1)}40%{transform:scale(1.6) rotate(12deg)}100%{transform:scale(1)}}
   .nbtn:hover{transform:scale(1.18) rotate(10deg)}
+
+  /* ═════════ WELCOME PAGE ═════════ */
+  .page.welcome{padding-top:70px}
+  .bunting{position:absolute;left:0;right:0;top:0;height:64px;pointer-events:none}
+  .bunting svg{width:100%;height:100%;display:block}
+  .flag{transform-box:fill-box;transform-origin:50% 0;animation:swing 2.6s ease-in-out infinite}
+  @keyframes swing{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+  .eyebrow{font-family:'Caveat',cursive;font-size:25px;color:#7a3550;text-align:center;line-height:1.1;margin-bottom:6px}
+  .tw{position:absolute;color:#e8b74a;text-shadow:0 0 8px rgba(232,183,74,.7);pointer-events:none;animation:tw 2.6s ease-in-out infinite}
+  .welcome .body p{text-align:center}
+  .welcome .body p:first-child{font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(17px,4.6vw,19px);color:var(--rose);line-height:1.5}
+  .chips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;margin-top:4px}
+  .chip{background:rgba(255,255,255,.8);border:1.5px solid #f2bccb;border-radius:16px;padding:9px 4px 8px;text-align:center;box-shadow:0 6px 14px rgba(200,30,80,.12)}
+  .chip small{display:block;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#b0476b}
+  .chip b{display:block;font-family:'DM Serif Display',serif;font-weight:400;font-size:17px;color:var(--rose);margin-top:2px}
+  .balloons{margin-top:auto;padding-top:14px;display:flex;align-items:flex-end;justify-content:center;gap:26px;width:100%}
+  .balloon{animation:bloat 3.4s ease-in-out infinite;transform-origin:50% 100%}
+  .balloon:nth-child(2){animation-delay:-1.1s}.balloon:nth-child(3){animation-delay:-2.2s}.balloon:nth-child(4){animation-delay:-.6s}
+  @keyframes bloat{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-14px) rotate(6deg)}}
+  .nbtn.nudge{animation:nudge 1.1s ease-in-out infinite}
+  @keyframes nudge{0%,100%{transform:translateX(0) scale(1)}50%{transform:translateX(5px) scale(1.18)}}
 </style>
 </head>
 <body>
@@ -591,6 +618,24 @@ document.addEventListener('pointermove', e => {
   tiltEl.style.transform = 'perspective(1000px) rotateY(' + (rx * 16) + 'deg) rotateX(' + (-ry * 12) + 'deg)';
 });
 document.addEventListener('pointerleave', () => { tiltEl.style.transform = ''; });
+
+/* welcome page decorations */
+function buntingSVG() {
+  const cols = ['#e11d5a', '#e8b74a', '#ff85a8', '#fff1b8', '#e11d5a', '#e8b74a', '#ff85a8', '#fff1b8', '#e11d5a'];
+  let f = '';
+  cols.forEach((c, i) => {
+    const t = (i + .55) / (cols.length + .1);
+    const x = 400 * t, y = 6 + 76 * t * (1 - t);
+    f += '<g transform="translate(' + x.toFixed(1) + ' ' + (y - 1).toFixed(1) + ')"><g class="flag" style="animation-delay:' + (-i * .33).toFixed(2) + 's">' +
+      '<polygon points="-17,0 17,0 0,34" fill="' + c + '" stroke="#fff" stroke-opacity=".6" stroke-width="1"/></g></g>';
+  });
+  return '<svg viewBox="0 0 400 64" preserveAspectRatio="none"><path d="M-4 5 Q200 44 404 5" fill="none" stroke="#a8741a" stroke-width="2" stroke-linecap="round"/>' + f + '</svg>';
+}
+function balloonSVG(c) {
+  return '<svg viewBox="0 0 50 110" width="40"><path d="M25 52 Q16 72 25 88 T25 108" fill="none" stroke="#c9b3bb" stroke-width="1.5"/>' +
+    '<ellipse cx="25" cy="26" rx="19" ry="24" fill="' + c + '"/><path d="M21 49 L25 55 L29 49z" fill="' + c + '"/>' +
+    '<ellipse cx="17.5" cy="17" rx="4.5" ry="8" fill="#fff" fill-opacity=".45" transform="rotate(18 17.5 17)"/></svg>';
+}
 
 /* title letters */
 function wavy(cls, text) {
@@ -727,6 +772,17 @@ DATA.pages.forEach((pg, i) => {
     page.appendChild(pol);
   }
 
+  if (pg.type === 'welcome') {
+    page.classList.add('welcome');
+    const bt = el('div', 'bunting'); bt.innerHTML = buntingSVG(); page.appendChild(bt);
+    [[8, 16, 16], [88, 19, 12], [13, 37, 11], [91, 43, 15], [7, 60, 13], [86, 64, 11]].forEach((q, n) => {
+      const t = el('span', 'tw', '✦');
+      t.style.cssText = 'left:' + q[0] + '%;top:' + q[1] + '%;font-size:' + q[2] + 'px;animation-delay:' + (-n * .5) + 's';
+      page.appendChild(t);
+    });
+    const ey = el('div', 'eyebrow reveal', pg.eyebrow || ''); ey.style.setProperty('--i', 0);
+    page.appendChild(ey);
+  }
   const title = wavy('title', pg.title || '');
   title.style.setProperty('--i', 1);
   page.appendChild(title);
@@ -756,6 +812,20 @@ DATA.pages.forEach((pg, i) => {
     });
     page.appendChild(grid);
     page.appendChild(box);
+  } else if (pg.type === 'welcome') {
+    page.appendChild(paragraphs(pg.text, 3));
+    const chips = el('div', 'chips');
+    (pg.chips || []).forEach((c, n) => {
+      const d = el('div', 'chip reveal'); d.style.setProperty('--i', 6 + n * .5);
+      d.appendChild(el('small', null, c[0])); d.appendChild(el('b', null, c[1]));
+      chips.appendChild(d);
+    });
+    page.appendChild(chips);
+    const bl = el('div', 'balloons reveal'); bl.style.setProperty('--i', 8);
+    ['#e11d5a', '#e8b74a', '#ff85a8', '#e11d5a'].forEach(c => {
+      const b = el('div', 'balloon'); b.innerHTML = balloonSVG(c); bl.appendChild(b);
+    });
+    page.appendChild(bl);
   } else if (pg.type === 'bengali') {
     const bn = el('div', 'bn reveal', pg.bengali); bn.style.setProperty('--i', 3);
     const tr = el('div', 'bn-tr reveal', pg.translit); tr.style.setProperty('--i', 4);
@@ -832,6 +902,7 @@ function show(n) {
   dotEls.forEach((d, i) => d.classList.toggle('on', i === idx));
   prev.disabled = idx === 0;
   next.disabled = idx === pageEls.length - 1;
+  next.classList.toggle('nudge', idx === 0);
   if (pageEls[idx]) pageEls[idx].scrollTop = 0;
   if (opened && was !== idx) { confettiRain(18); burst(innerWidth / 2, innerHeight * .82, 6); }
 }
