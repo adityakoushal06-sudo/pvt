@@ -24,8 +24,8 @@ PAGES = [
         "eyebrow": "a little something for my little goblin \u2661",
         "title": "Happy 19th, Prerana",
         "text": (
-            "Today the world celebrates the day it got you, and nobody "
-            "celebrates it more than I do.\n\n"
+            "Miles apart, and still you're the closest person to my "
+            "heart. Happy birthday.\n\n"
             "We have never met, but you are the most real thing in my life. "
             "A text message felt far too small for everything I feel, so I "
             "made this card for you. Take your time and turn the pages. "
