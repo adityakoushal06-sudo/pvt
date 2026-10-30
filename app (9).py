@@ -188,8 +188,41 @@ st.markdown(
     #MainMenu, header, footer, [data-testid="stToolbar"],
     [data-testid="stDecoration"], [data-testid="stStatusWidget"] {{ display: none !important; }}
     .stApp {{
-        background: radial-gradient(circle at 20% 10%, #5a1030 0%, #2a0716 45%, #14030b 100%);
+        background:
+            radial-gradient(ellipse 55% 40% at 14% 18%, rgba(225,29,90,.38), transparent 70%),
+            radial-gradient(ellipse 45% 38% at 86% 78%, rgba(255,150,120,.24), transparent 70%),
+            radial-gradient(ellipse 38% 30% at 74% 14%, rgba(170,60,140,.30), transparent 70%),
+            radial-gradient(ellipse 34% 26% at 22% 86%, rgba(255,120,170,.20), transparent 70%),
+            linear-gradient(118deg, transparent 34%, rgba(255,160,190,.09) 46%, rgba(255,215,130,.13) 50%, rgba(255,160,190,.09) 54%, transparent 66%),
+            radial-gradient(circle at 20% 10%, #5a1030 0%, #2a0716 45%, #14030b 100%);
     }}
+    .stApp::before {{
+        content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+        background-image:
+            radial-gradient(1.2px 1.2px at 20px 30px, #fff, transparent),
+            radial-gradient(1px 1px at 90px 140px, #ffe3b0, transparent),
+            radial-gradient(1.5px 1.5px at 160px 70px, #fff, transparent),
+            radial-gradient(1px 1px at 50px 90px, #ffd9e4, transparent),
+            radial-gradient(1.3px 1.3px at 210px 190px, #fff, transparent),
+            radial-gradient(1px 1px at 130px 250px, #ffe3b0, transparent),
+            radial-gradient(1.8px 1.8px at 120px 40px, #fff1b8, transparent),
+            radial-gradient(2.2px 2.2px at 330px 260px, #fff, transparent);
+        background-size: 220px 220px, 220px 220px, 220px 220px, 330px 330px, 330px 330px, 330px 330px, 470px 470px, 470px 470px;
+        animation: twinkleBg 5s ease-in-out infinite alternate;
+    }}
+    .stApp::after {{
+        content: ""; position: fixed; top: 12%; left: -10%; width: 150px; height: 2px; z-index: 0; pointer-events: none;
+        background: linear-gradient(90deg, transparent, #fff1b8);
+        border-radius: 2px; opacity: 0;
+        animation: shootBg 11s ease-in infinite;
+    }}
+    @keyframes twinkleBg {{ from {{ opacity: .55; }} to {{ opacity: 1; }} }}
+    @keyframes shootBg {{
+        0%, 88% {{ opacity: 0; transform: translate(0, 0) rotate(25deg); }}
+        90% {{ opacity: 1; }}
+        100% {{ opacity: 0; transform: translate(120vw, 56vw) rotate(25deg); }}
+    }}
+    .block-container {{ position: relative; z-index: 1; }}
     .block-container {{ padding: 0.5rem 0 0 0 !important; max-width: 760px !important; }}
     iframe {{ border: none !important; }}
     {hide_sidebar}
@@ -395,7 +428,6 @@ HTML = r"""
 </head>
 <body>
 <div class="stage">
-  <div class="glow"></div>
 
   <div class="card" id="card">
     <div class="inside">
