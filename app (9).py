@@ -9,7 +9,8 @@ import streamlit.components.v1 as components
 # ════════════════════════════════════════════════════════════════
 #  ✏️  EDIT THIS PART  —  names, photos and your words
 # ════════════════════════════════════════════════════════════════
-HER_NAME = "My Love"          # her name / nickname on the cover
+HER_NAME = "Prerana"          # her name / nickname on the cover
+AGE = 19                      # shown on the gold seal on the cover
 YOUR_NAME = "Yours, always"   # how you sign off (e.g. "Forever yours, Rahul")
 
 # Put your photos in a folder called  photos/  next to this file,
@@ -20,9 +21,9 @@ YOUR_NAME = "Yours, always"   # how you sign off (e.g. "Forever yours, Rahul")
 PAGES = [
     {
         "type": "letter",
-        "title": "Happy Birthday, my everything",
+        "title": "Happy 19th, Prerana",
         "text": (
-            "Today the world celebrates the day you were born, and honestly, "
+            "Nineteen years ago the world got you, and honestly, "
             "I celebrate it more than anyone. Because somewhere in all the "
             "chaos of this universe, you were created, and somehow, "
             "unbelievably, you became mine.\n\n"
@@ -73,6 +74,32 @@ PAGES = [
         ),
     },
     {
+        "type": "reasons",
+        "title": "19 reasons I love you",
+        "text": "One for every year of you. Tap each heart.",
+        "reasons": [
+            "The way you laugh with your whole face.",
+            "How you make ordinary days feel special.",
+            "Your kindness, even when no one is watching.",
+            "The way you say my name.",
+            "Your stubborn streak. I secretly love it.",
+            "How safe I feel when I'm next to you.",
+            "Your random midnight thoughts.",
+            "The way you care about the little things.",
+            "Your eyes when you're excited.",
+            "How you believe in me.",
+            "Your terrible jokes that I still laugh at.",
+            "The way you fix my bad days without trying.",
+            "Your hugs. Obviously.",
+            "How brave you are, even when you're scared.",
+            "The way you love the people around you.",
+            "Your long messages and your voice notes.",
+            "How you make me want to be better.",
+            "Every memory we have made together.",
+            "Because you are you, and I am so lucky you're mine.",
+        ],
+    },
+    {
         "type": "letter",
         "title": "A little promise",
         "text": (
@@ -87,7 +114,7 @@ PAGES = [
     },
     {
         "type": "final",
-        "title": "Make a wish, my love",
+        "title": "Make a wish, Prerana",
         "text": "Tap the candles to blow them out.",
         "after": (
             "I hope every wish you made just came true. "
@@ -95,7 +122,7 @@ PAGES = [
             "I'll spend my whole life working on it.\n\n"
             "I love you more than words, more than this card, "
             "more than all the hearts on this screen. "
-            "Happy Birthday, my love. ♡"
+            "Happy 19th Birthday, Prerana. ♡"
         ),
     },
 ]
@@ -165,7 +192,23 @@ for pg in PAGES:
         item["photo_uri"] = photo_to_data_uri(pg.get("photo"))
     pages_payload.append(item)
 
-DATA = {"her": HER_NAME, "you": YOUR_NAME, "pages": pages_payload}
+def music_uri():
+    # Optional: put a song called song.mp3 (or .m4a/.ogg/.wav) next to app.py
+    for n in ("song.mp3", "song.m4a", "song.ogg", "song.wav"):
+        p = Path(__file__).parent / n
+        if p.exists():
+            mime = mimetypes.guess_type(p.name)[0] or "audio/mpeg"
+            return f"data:{mime};base64,{base64.b64encode(p.read_bytes()).decode()}"
+    return None
+
+
+DATA = {
+    "her": HER_NAME,
+    "you": YOUR_NAME,
+    "age": AGE,
+    "music": music_uri(),
+    "pages": pages_payload,
+}
 
 HTML = r"""
 <!doctype html>
@@ -294,13 +337,48 @@ HTML = r"""
   .dots{display:flex;gap:7px}
   .dot{width:8px;height:8px;border-radius:50%;background:#f2bccb;transition:all .35s}
   .dot.on{background:var(--rose);width:22px;border-radius:6px}
+
+  /* ───────── extras ───────── */
+  .tilt{transition:transform .25s ease-out;will-change:transform}
+  .star{position:absolute;border-radius:50%;background:#fff;pointer-events:none;animation:tw 3s ease-in-out infinite}
+  @keyframes tw{0%,100%{opacity:.1;transform:scale(.6)}50%{opacity:.9;transform:scale(1.2)}}
+  .spark{position:absolute;left:0;top:0;color:#ffe08a;text-shadow:0 0 8px #ffb347;pointer-events:none;will-change:transform,opacity}
+
+  .c-heart{width:60px;margin:12px 0 2px}
+  .seal{position:relative;width:104px;height:104px;margin:12px 0 0;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(circle at 30% 25%,#fff6cf,#f1c766 38%,#c58a22 72%,#8a5a10);
+    box-shadow:0 10px 24px rgba(0,0,0,.45),0 0 0 4px rgba(255,225,150,.25),inset 0 -6px 12px rgba(120,70,0,.4);overflow:hidden}
+  .seal::before{content:"";position:absolute;inset:7px;border-radius:50%;border:1.5px dashed rgba(90,40,0,.55)}
+  .seal::after{content:"";position:absolute;top:-30%;left:-60%;width:40%;height:160%;transform:rotate(25deg);
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);animation:sweep 3.2s ease-in-out infinite}
+  @keyframes sweep{0%{left:-60%}55%,100%{left:140%}}
+  .seal span{position:relative;font-family:'Playfair Display',serif;font-weight:700;font-size:50px;color:#5b0f2e;text-shadow:0 1px 0 rgba(255,255,255,.5);line-height:1}
+  .seal small{position:absolute;bottom:15px;left:0;right:0;text-align:center;font-size:8.5px;letter-spacing:.28em;color:#5b0f2e;font-weight:700;text-transform:uppercase}
+
+  .music{position:absolute;top:12px;right:12px;z-index:12;width:34px;height:34px;border-radius:50%;border:none;cursor:pointer;
+    background:rgba(255,255,255,.85);color:var(--rose);font-size:17px;box-shadow:0 4px 10px rgba(180,30,80,.25);
+    animation:spin 4s linear infinite}
+  .music.off{animation:none;opacity:.55}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .rgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;width:100%;margin:2px 0 12px}
+  .rbtn{position:relative;aspect-ratio:1;border:none;background:none;cursor:pointer;color:#ffb3c8;transition:transform .2s,color .3s}
+  .rbtn svg{width:100%;height:100%;fill:currentColor;filter:drop-shadow(0 3px 4px rgba(200,30,80,.25))}
+  .rbtn span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:700;color:#fff;padding-bottom:2px}
+  .rbtn:hover{transform:scale(1.12)}
+  .rbtn.done{color:#e11d5a}
+  .rbox{width:100%;min-height:96px;padding:14px 16px;background:rgba(255,255,255,.75);border:1.5px dashed #e58aa6;border-radius:16px;
+    text-align:center;font-style:italic;line-height:1.6;font-size:15.5px;display:flex;align-items:center;justify-content:center}
+  .rbox .pop{animation:popin .45s cubic-bezier(.2,1.4,.4,1) both}
+  .rbox b{display:block;font-family:'Great Vibes',cursive;font-size:30px;color:var(--rose);font-style:normal;font-weight:400;line-height:1.1}
+  @keyframes popin{from{opacity:0;transform:scale(.8) translateY(8px)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 <div class="stage">
   <div class="glow"></div>
 
-  <div class="card" id="card">
+  <div class="tilt" id="tilt"><div class="card" id="card">
     <div class="inside">
       <div class="pages" id="pages"></div>
       <div class="nav">
@@ -325,11 +403,12 @@ HTML = r"""
           <path fill="url(#hg)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
         </svg>
         <div class="c-name foil" id="cname"></div>
+        <div class="seal"><span id="sealn">19</span><small>years</small></div>
         <div class="tap">tap to open &#9825;</div>
       </div>
       <div class="face back-face"></div>
     </div>
-  </div>
+  </div></div>
 </div>
 <div id="fx"></div>
 
@@ -339,6 +418,72 @@ const DATA = __DATA__;
 const HEART_PATH = "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z";
 const COLORS = ["#ff4d88","#ff2e63","#ff85a8","#ff6f91","#f43f7a","#ffb3c8","#e11d5a","#ff9ec0","#ffd166"];
 const fx = document.getElementById('fx');
+document.getElementById('sealn').textContent = DATA.age;
+
+/* twinkling stars */
+(function () {
+  const stage = document.querySelector('.stage');
+  for (let i = 0; i < 70; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const z = 1 + Math.random() * 2.2;
+    s.style.cssText = 'left:' + Math.random() * 100 + '%;top:' + Math.random() * 100 + '%;width:' + z + 'px;height:' + z + 'px;animation-delay:' + (Math.random() * 3) + 's;animation-duration:' + (2 + Math.random() * 3) + 's';
+    stage.insertBefore(s, stage.firstChild);
+  }
+})();
+
+/* golden sparkle trail + 3D tilt that follows the pointer */
+let lastSpark = 0;
+const tiltEl = document.getElementById('tilt');
+document.addEventListener('pointermove', e => {
+  const now = performance.now();
+  if (now - lastSpark > 55) {
+    lastSpark = now;
+    const s = document.createElement('div');
+    s.className = 'spark';
+    s.textContent = Math.random() > .5 ? '\u2726' : '\u2727';
+    s.style.fontSize = (8 + Math.random() * 10) + 'px';
+    fx.appendChild(s);
+    const x = e.clientX, y = e.clientY, dx = (Math.random() - .5) * 40;
+    s.animate([
+      { transform: 'translate(' + x + 'px,' + y + 'px) scale(1)', opacity: 1 },
+      { transform: 'translate(' + (x + dx) + 'px,' + (y + 30 + Math.random() * 30) + 'px) scale(.2) rotate(120deg)', opacity: 0 }
+    ], { duration: 800 + Math.random() * 400, easing: 'ease-out' }).onfinish = () => s.remove();
+  }
+  const rx = (e.clientX / innerWidth - .5), ry = (e.clientY / innerHeight - .5);
+  tiltEl.style.transform = 'perspective(1100px) rotateY(' + (rx * 9) + 'deg) rotateX(' + (-ry * 7) + 'deg)';
+});
+document.addEventListener('pointerleave', () => { tiltEl.style.transform = ''; });
+
+/* confetti rain */
+function confettiRain(n = 70) {
+  const cols = ['#ff4d88', '#ffd166', '#fff', '#ff85a8', '#f1c766', '#ffb3c8'];
+  for (let i = 0; i < n; i++) {
+    const c = document.createElement('div');
+    const w = 6 + Math.random() * 6;
+    c.style.cssText = 'position:absolute;left:0;top:0;width:' + w + 'px;height:' + (w * 1.7) + 'px;background:' + cols[(Math.random() * cols.length) | 0] + ';border-radius:2px;opacity:.95';
+    fx.appendChild(c);
+    const x = Math.random() * innerWidth, sway = (Math.random() - .5) * 160;
+    c.animate([
+      { transform: 'translate(' + x + 'px,-20px) rotate(0deg)', opacity: 1 },
+      { transform: 'translate(' + (x + sway) + 'px,' + (innerHeight + 30) + 'px) rotate(' + (360 + Math.random() * 720) + 'deg)', opacity: 1 }
+    ], { duration: 2200 + Math.random() * 2200, delay: Math.random() * 900, easing: 'cubic-bezier(.3,.5,.6,1)' }).onfinish = () => c.remove();
+  }
+}
+
+/* optional music (put song.mp3 next to app.py) */
+let audio = null;
+if (DATA.music) {
+  audio = new Audio(DATA.music);
+  audio.loop = true; audio.volume = .7;
+  const mb = document.createElement('button');
+  mb.className = 'music'; mb.innerHTML = '&#9835;';
+  document.querySelector('.inside').appendChild(mb);
+  mb.addEventListener('click', e => {
+    e.stopPropagation();
+    if (audio.paused) { audio.play(); mb.classList.remove('off'); } else { audio.pause(); mb.classList.add('off'); }
+  });
+}
 
 /* ───────── heart bubbles ───────── */
 function spawnHeart(x, y, opts = {}) {
@@ -451,7 +596,28 @@ DATA.pages.forEach((pg, i) => {
   const dv = el('div'); dv.innerHTML = dividerHTML; dv.firstChild.classList.add('reveal'); dv.firstChild.style.setProperty('--i', 2);
   page.appendChild(dv.firstChild);
 
-  if (pg.type === 'final') {
+  if (pg.type === 'reasons') {
+    page.appendChild(paragraphs(pg.text, 3));
+    const grid = el('div', 'rgrid reveal'); grid.style.setProperty('--i', 4);
+    const box = el('div', 'rbox reveal'); box.style.setProperty('--i', 5);
+    const first = el('div', 'pop', 'tap a heart \u2661');
+    box.appendChild(first);
+    (pg.reasons || []).forEach((r, k) => {
+      const b = el('button', 'rbtn');
+      b.innerHTML = '<svg viewBox="0 0 24 24"><path d="' + HEART_PATH + '"/></svg><span>' + (k + 1) + '</span>';
+      b.addEventListener('click', () => {
+        b.classList.add('done');
+        box.innerHTML = '';
+        const inner = el('div', 'pop');
+        inner.appendChild(el('b', null, '#' + (k + 1)));
+        inner.appendChild(el('div', null, r));
+        box.appendChild(inner);
+      });
+      grid.appendChild(b);
+    });
+    page.appendChild(grid);
+    page.appendChild(box);
+  } else if (pg.type === 'final') {
     const hint = paragraphs(pg.text, 3);
     page.appendChild(hint);
 
@@ -487,6 +653,7 @@ DATA.pages.forEach((pg, i) => {
       after.querySelectorAll('p').forEach((p, k) => { p.style.animation = 'rise .9s cubic-bezier(.2,.7,.2,1) both'; p.style.animationDelay = (k * .5 + .4) + 's'; });
       sign.style.display = 'block'; sign.classList.add('reveal'); sign.style.setProperty('--i', 4);
       confettiShower(4200);
+      confettiRain(110);
       setTimeout(() => page.scrollTo({ top: page.scrollHeight, behavior: 'smooth' }), 600);
     });
   } else {
@@ -523,6 +690,8 @@ function show(n) {
 function openCard() {
   if (opened) return; opened = true;
   card.classList.add('opened');
+  if (audio) audio.play().catch(() => {});
+  confettiRain(60);
   show(0);
   setTimeout(() => confettiShower(1800), 500);
 }
