@@ -23,54 +23,65 @@ PAGES = [
         "type": "letter",
         "title": "Happy 19th, Prerana",
         "text": (
-            "Nineteen years ago the world got you, and honestly, "
-            "I celebrate it more than anyone. Out of everyone out there, "
-            "somehow, unbelievably, I found you, and you became mine.\n\n"
-            "We haven't met yet, and I wish I could be next to you today. "
-            "So I made this little card, because a text message felt too "
-            "small for everything I feel. Take your time, turn the pages, "
-            "and know that every single word here is true."
+            "Today the world celebrates the day it got you, and nobody "
+            "celebrates it more than I do.\n\n"
+            "We have never met, but you are the most real thing in my life. "
+            "A text message felt far too small for everything I feel, so I "
+            "made this card for you. Take your time and turn the pages. "
+            "Every single word here is true."
         ),
     },
     {
         "type": "photo",
         "photo": "1.jpg",
-        "caption": "my favourite view ♡",
-        "title": "The day I found you",
+        "caption": "my little goblin ♡",
+        "title": "January, on Discord",
         "text": (
-            "I still remember how nervous I was when we first started "
-            "talking, and how quickly everything else went quiet. I didn't "
-            "know it then, but my life was quietly turning a corner "
-            "towards you.\n\n"
-            "Distance never stopped you from making ordinary days feel like "
-            "little movies. I have been falling for you ever since, and I "
-            "never want to stop."
+            "Back then, I had no one. Then in January you walked into my "
+            "life through a screen, and I had no idea how much was about "
+            "to change.\n\n"
+            "Somehow a stranger on Discord became the person I wanted to "
+            "tell everything to. You didn't just come into my life. You "
+            "made it start."
+        ),
+    },
+    {
+        "type": "letter",
+        "title": "Every day since",
+        "text": (
+            "We started talking every single day, and I never got tired "
+            "of it. We were dating for a bit, and then on the 20th you "
+            "officially became mine.\n\n"
+            "I still can't believe how lucky I am. Some people spend their "
+            "whole lives looking for someone like you. I got a rude, "
+            "loud, beautiful girlfriend who somehow chose me back."
         ),
     },
     {
         "type": "photo",
         "photo": "2.jpg",
-        "caption": "that smile",
-        "title": "Your smile is my favourite place",
+        "caption": "rude, but only for me",
+        "title": "My rude little goblin",
         "text": (
-            "Even through a screen, your smile is the most beautiful thing "
-            "I have ever seen. It fixes my worst days without even trying.\n\n"
-            "I can't wait to see it in real life one day. Until then, I "
-            "will do everything I can to make sure it never goes away."
+            "You are rude, you are stubborn, you are chaos in the "
+            "cutest way, and I love every bit of it. You are my little "
+            "goblin and nobody else gets to have that title.\n\n"
+            "And when you get mad at me, I feel broken. Nothing feels "
+            "right until we are okay again, because I don't want anything "
+            "in this world but you."
         ),
     },
     {
         "type": "photo",
         "photo": "3.jpg",
-        "caption": "no one else but you",
-        "title": "Why it will always be you",
+        "caption": "my cappuccino",
+        "title": "You feel like home",
         "text": (
-            "You are the first person I want to tell good news to, and the "
-            "one I want to talk to when the news is bad. Miles apart, you "
-            "still make me braver, softer and happier than I knew I could "
-            "be.\n\n"
-            "Out of every person in the world, in every version of every "
-            "story, I would choose you. Again, and again, and again."
+            "You are my cappuccino: warm, a little bitter sometimes, and "
+            "the best part of every single morning.\n\n"
+            "I have never met you, but you make me feel like home. "
+            "A place I never had until you showed up. Wherever you are "
+            "is where I want to be."
         ),
     },
     {
@@ -78,41 +89,62 @@ PAGES = [
         "title": "19 reasons I love you",
         "text": "One for every year of you. Tap each heart.",
         "reasons": [
+            "You came into my life when I had no one.",
             "The way you laugh with your whole face.",
-            "How you make ordinary days feel special.",
-            "Your kindness, even when no one is watching.",
-            "The way you say my name.",
+            "Your rudeness. I would not trade it for anything.",
+            "You make me feel like home.",
+            "You are my cappuccino, my favourite part of the day.",
+            "How you fix my bad days without trying.",
             "Your stubborn streak. I secretly love it.",
-            "How safe I feel just talking to you.",
-            "Your random midnight thoughts.",
             "The way you care about the little things.",
-            "Your eyes when you're excited.",
             "How you believe in me.",
             "Your terrible jokes that I still laugh at.",
-            "The way you fix my bad days without trying.",
-            "The hug I'm saving for the day we finally meet.",
-            "How brave you are, even when you're scared.",
-            "The way you love the people around you.",
             "Your long messages and your voice notes.",
+            "How brave you are, even when you're scared.",
+            "The hug I'm saving for the day we finally meet.",
             "How you make me want to be better.",
-            "Every conversation we have had, big or small.",
-            "Because you are you, and I am so lucky you're mine.",
+            "Everything I have is because of you.",
+            "Every day we have talked since January.",
+            "Even your angry face. Especially your angry face.",
+            "That you chose me.",
+            "Because you are you, my little goblin, and you're mine.",
         ],
     },
     {
         "type": "letter",
-        "title": "A little promise",
+        "title": "Everything I have",
         "text": (
-            "I promise to be there for the loud days and the quiet ones, "
-            "no matter how many miles are between us. To laugh at your "
-            "jokes even when they are terrible, and to listen when you "
-            "just need someone to listen.\n\n"
-            "I promise to keep choosing you, every morning, for as long as "
-            "I get mornings. And the day we finally meet, I promise to hold "
-            "your hand and never let it feel like we were ever apart. "
+            "Everything I have in my life today is because of you. "
+            "The smiles, the hope, the reasons to wake up. All of it "
+            "started the day you showed up.\n\n"
+            "I am so grateful. Someone out there can be this lucky to have "
+            "a girlfriend like you, and I am that someone. Thank you for "
+            "staying, for loving me, and for being my home."
+        ),
+    },
+    {
+        "type": "bengali",
+        "title": "In the language of my heart",
+        "bengali": "আমি তোমাকে ভালোবাসি, প্রেরণা",
+        "translit": "Ami tomake bhalobashi, Prerana",
+        "meaning": "I love you, Prerana.",
+        "text": (
+            "I could say it in any language, but this one feels the "
+            "closest to my heart."
+        ),
+    },
+    {
+        "type": "letter",
+        "title": "To the moon and back",
+        "text": (
+            "I love you to the moon and back, and I promise to keep "
+            "loving you even when you're mad at me, even when you're "
+            "rude, and most of all on the days you need it the most.\n\n"
+            "My love is always yours, and it always will be. "
+            "One day I will hold your hand for real, and until then "
+            "I will keep choosing you every single morning.\n\n"
             "You are not just my girlfriend. You are my best friend, my "
-            "home, and my favourite person.\n\n"
-            "Thank you for being you. Thank you for loving me."
+            "home, and my favourite person."
         ),
     },
     {
@@ -125,8 +157,9 @@ PAGES = [
             "I'll spend my whole life working on it.\n\n"
             "One day I'll be right there to blow out the candles with you. "
             "Until then, I love you more than words, more than this card, "
-            "more than all the hearts on this screen. "
-            "Happy 19th Birthday, Prerana. ♡"
+            "more than all the hearts on this screen.\n\n"
+            "আমি তোমাকে ভালোবাসি, প্রেরণা. "
+            "Happy 19th Birthday, my little goblin. ♡"
         ),
     },
 ]
@@ -221,14 +254,14 @@ HTML = r"""
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Sans:wght@400;500;700&family=DM+Serif+Display:ital@0;1&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DM+Sans:wght@400;500;700&family=DM+Serif+Display:ital@0;1&family=Great+Vibes&family=Noto+Serif+Bengali:wght@500;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --rose:#e11d5a; --blush:#ffd9e4; --wine:#5b0f2e; --gold1:#fff1b8; --gold2:#e8b74a; --gold3:#a8741a;
     --paper:#fff8f1; --ink:#4a2432;
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-  html,body{height:100%;background:transparent;overflow:hidden;font-family:'DM Sans',sans-serif;color:var(--ink);user-select:none}
+  html,body{height:100%;background:transparent;overflow:hidden;font-family:'DM Sans','Noto Serif Bengali',sans-serif;color:var(--ink);user-select:none}
   .stage{position:relative;width:100%;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
 
   .glow{position:absolute;inset:0;pointer-events:none;
@@ -267,6 +300,9 @@ HTML = r"""
     background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
     animation:shimmer 4s linear infinite}
   @keyframes shimmer{0%{background-position:150% 0}100%{background-position:-100% 0}}
+  .bn{font-family:'Noto Serif Bengali','DM Serif Display',serif;font-size:clamp(26px,7.5vw,32px);line-height:1.5;text-align:center;color:var(--rose);margin:6px 0 4px}
+  .bn-tr{font-family:'DM Serif Display',serif;font-style:italic;font-size:19px;text-align:center;color:#7a3550;margin-bottom:4px}
+  .bn-mean{font-family:'Caveat',cursive;font-size:24px;text-align:center;color:#7a3550;margin-bottom:22px}
   .c-small{font-size:12px;font-weight:500;letter-spacing:.5em;text-transform:uppercase;margin-bottom:18px;padding-left:.5em}
   .c-big{font-family:'DM Serif Display',serif;font-size:clamp(44px,13vw,64px);line-height:1.02;letter-spacing:-.01em}
   .c-name{font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(26px,7.5vw,34px);margin-top:6px}
@@ -285,7 +321,7 @@ HTML = r"""
   .page.active{opacity:1;pointer-events:auto;transform:none}
   .page::-webkit-scrollbar{width:4px}.page::-webkit-scrollbar-thumb{background:#e9a9bd;border-radius:4px}
 
-  .title{font-family:'DM Serif Display',serif;font-size:clamp(26px,7.5vw,32px);line-height:1.15;text-align:center;color:var(--rose);margin-bottom:12px}
+  .title{font-family:'DM Serif Display','Noto Serif Bengali',serif;font-size:clamp(26px,7.5vw,32px);line-height:1.15;text-align:center;color:var(--rose);margin-bottom:12px}
   .divider{width:34px;height:3px;border-radius:3px;background:#e58aa6;margin:0 0 20px;opacity:.7}
   .body{width:100%}
   .body p{font-size:clamp(14.5px,4vw,16px);line-height:1.8;text-align:left;margin-bottom:16px;color:var(--ink)}
@@ -569,6 +605,12 @@ DATA.pages.forEach((pg, i) => {
     });
     page.appendChild(grid);
     page.appendChild(box);
+  } else if (pg.type === 'bengali') {
+    const bn = el('div', 'bn reveal', pg.bengali); bn.style.setProperty('--i', 3);
+    const tr = el('div', 'bn-tr reveal', pg.translit); tr.style.setProperty('--i', 4);
+    const mean = el('div', 'bn-mean reveal', pg.meaning); mean.style.setProperty('--i', 5);
+    page.appendChild(bn); page.appendChild(tr); page.appendChild(mean);
+    page.appendChild(paragraphs(pg.text, 6));
   } else if (pg.type === 'final') {
     const hint = paragraphs(pg.text, 3);
     page.appendChild(hint);
