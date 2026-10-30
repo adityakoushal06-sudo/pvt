@@ -424,12 +424,69 @@ HTML = r"""
   .rbox .pop{animation:popin .45s cubic-bezier(.2,1.4,.4,1) both}
   .rbox b{display:block;font-family:'DM Serif Display',serif;font-size:26px;color:var(--rose);font-weight:400;line-height:1.1}
   @keyframes popin{from{opacity:0;transform:scale(.8) translateY(8px)}to{opacity:1;transform:none}}
+
+  /* ═════════ CRAZY MODE ═════════ */
+  @property --a{syntax:'<angle>';initial-value:0deg;inherits:false}
+  .tilt{transition:transform .2s ease-out;will-change:transform}
+  .card{animation:floaty 6s ease-in-out infinite}
+  .card.opened{animation:floaty2 5s ease-in-out infinite}
+  @keyframes floaty{0%,100%{transform:translateY(0) rotate(-1.4deg)}50%{transform:translateY(-16px) rotate(1.4deg)}}
+  @keyframes floaty2{0%,100%{transform:translateY(0) rotate(-.5deg)}50%{transform:translateY(-7px) rotate(.5deg)}}
+  .card::before{content:"";position:absolute;inset:-4px;border-radius:34px;z-index:-1;
+    background:conic-gradient(from var(--a),#e11d5a,#e8b74a,#fff1b8,#ff85a8,#e11d5a);
+    filter:blur(14px);opacity:.9;animation:ring 4s linear infinite}
+  @keyframes ring{to{--a:360deg}}
+
+  .orb{position:absolute;width:300px;height:300px;border-radius:50%;pointer-events:none;filter:blur(30px);opacity:.6}
+  .orb.o1{left:calc(50% - 280px);top:6%;background:radial-gradient(circle,rgba(225,29,90,.65),transparent 68%);animation:drift1 9s ease-in-out infinite}
+  .orb.o2{left:calc(50% - 20px);bottom:2%;background:radial-gradient(circle,rgba(232,183,74,.5),transparent 68%);animation:drift2 11s ease-in-out infinite}
+  .orb.o3{left:calc(50% - 150px);top:36%;background:radial-gradient(circle,rgba(255,133,168,.5),transparent 68%);animation:drift1 13s ease-in-out infinite reverse}
+  @keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,60px) scale(1.25)}}
+  @keyframes drift2{0%,100%{transform:translate(0,0) scale(1.1)}50%{transform:translate(-50px,-60px) scale(.85)}}
+
+  .spark{position:absolute;left:0;top:0;color:#ffe08a;text-shadow:0 0 8px #ffb347;pointer-events:none;will-change:transform,opacity}
+  .shake{animation:shake .7s}
+  @keyframes shake{0%,100%{transform:none}15%{transform:translate(-9px,5px) rotate(-1deg)}30%{transform:translate(8px,-6px) rotate(1deg)}45%{transform:translate(-7px,-4px)}60%{transform:translate(6px,5px)}80%{transform:translate(-3px,2px)}}
+
+  .c-big div{white-space:nowrap}
+  .jl{display:inline-block}
+  @keyframes jump{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-11px) rotate(-4deg)}}
+  .ribbon{position:absolute;left:-12%;right:-12%;bottom:80px;height:34px;overflow:hidden;transform:rotate(-7deg);
+    background:rgba(63,6,24,.72);border-top:1px solid rgba(255,215,130,.6);border-bottom:1px solid rgba(255,215,130,.6);display:flex;align-items:center}
+  .rt{white-space:nowrap;font-size:13px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;animation:shimmer 4s linear infinite,marq 14s linear infinite}
+  @keyframes marq{to{transform:translateX(-50%)}}
+  .seal{animation:sealwob 3.4s ease-in-out infinite}
+  @keyframes sealwob{0%,100%{transform:rotate(-7deg) scale(1)}50%{transform:rotate(7deg) scale(1.08)}}
+
+  .page{transform:translateX(70px) rotate(5deg) scale(.88);transition:opacity .5s ease,transform .8s cubic-bezier(.34,1.56,.64,1)}
+  .page.before{transform:translateX(-70px) rotate(-5deg) scale(.88)}
+  .page.active{transform:none}
+  .title .w{display:inline-block;white-space:nowrap}
+  .title .ch{display:inline-block;opacity:0}
+  .page.active .title .ch{animation:chpop .8s cubic-bezier(.3,1.8,.5,1) both,wob 2.6s ease-in-out infinite;
+    animation-delay:calc(var(--k) * .045s + .2s),calc(var(--k) * .15s + 1.2s)}
+  @keyframes chpop{from{opacity:0;transform:translateY(-40px) scale(.2) rotate(-40deg)}to{opacity:1;transform:none}}
+  @keyframes wob{0%,100%{translate:0 0}50%{translate:0 -4px}}
+
+  .polaroid{rotate:-3deg}
+  .page.active .polaroid.reveal{animation:rise .9s cubic-bezier(.2,.7,.2,1) both,polwob 4.5s ease-in-out infinite;
+    animation-delay:calc(var(--i) * .3s + .2s),1.4s}
+  @keyframes polwob{0%,100%{rotate:-3deg}50%{rotate:3deg}}
+  .polaroid::after{content:"\2605";position:absolute;top:-18px;right:-12px;font-size:38px;color:#f1c766;text-shadow:0 0 12px #e8b74a;animation:spinstar 5s linear infinite}
+  @keyframes spinstar{to{transform:rotate(360deg)}}
+
+  .rbtn{animation:bob 2.2s ease-in-out infinite;animation-delay:calc(var(--k) * -.19s)}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-6px) rotate(5deg)}}
+  .rbtn.done svg{animation:thump .6s}
+  @keyframes thump{0%{transform:scale(1)}40%{transform:scale(1.6) rotate(12deg)}100%{transform:scale(1)}}
+  .nbtn:hover{transform:scale(1.18) rotate(10deg)}
 </style>
 </head>
 <body>
 <div class="stage">
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
 
-  <div class="card" id="card">
+  <div class="tilt" id="tilt"><div class="card" id="card">
     <div class="inside">
       <div class="pages" id="pages"></div>
       <div class="nav">
@@ -441,8 +498,9 @@ HTML = r"""
 
     <div class="cover" id="cover">
       <div class="face front">
+        <div class="ribbon"><div class="rt foil">happy birthday ♡ my little goblin ♡ happy birthday ♡ my little goblin ♡ happy birthday ♡ my little goblin ♡ happy birthday ♡ my little goblin ♡ happy birthday ♡ my little goblin ♡ happy birthday ♡ my little goblin ♡ </div></div>
         <div class="c-small foil">a card for you</div>
-        <div class="c-big foil">Happy<br>Birthday</div>
+        <div class="c-big">Happy<br>Birthday</div>
         <svg class="c-heart" viewBox="0 0 24 24">
           <defs><linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff1b8"/><stop offset=".5" stop-color="#e8b74a"/><stop offset="1" stop-color="#a8741a"/></linearGradient></defs>
           <path fill="url(#hg)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
@@ -453,7 +511,7 @@ HTML = r"""
       </div>
       <div class="face back-face"></div>
     </div>
-  </div>
+  </div></div>
 </div>
 <div id="fx"></div>
 
@@ -491,6 +549,66 @@ function confettiRain(n = 70) {
       { transform: 'translate(' + (x + sway) + 'px,' + (innerHeight + 30) + 'px) rotate(' + (360 + Math.random() * 720) + 'deg)', opacity: 1 }
     ], { duration: 2200 + Math.random() * 2200, delay: Math.random() * 900, easing: 'cubic-bezier(.3,.5,.6,1)' }).onfinish = () => c.remove();
   }
+}
+
+/* letters on the cover jump */
+(function () {
+  const big = document.querySelector('.c-big');
+  big.innerHTML = '';
+  let k = 0;
+  ['Happy', 'Birthday'].forEach(w => {
+    const line = document.createElement('div');
+    [...w].forEach(c => {
+      const sp = document.createElement('span');
+      sp.className = 'foil jl'; sp.textContent = c;
+      sp.style.animation = 'shimmer 4s linear infinite, jump 1.8s ease-in-out infinite';
+      sp.style.animationDelay = '0s, ' + (k++ * 0.09) + 's';
+      line.appendChild(sp);
+    });
+    big.appendChild(line);
+  });
+})();
+
+/* golden sparkle trail + 3D tilt that follows the pointer */
+let lastSpark = 0;
+const tiltEl = document.getElementById('tilt');
+document.addEventListener('pointermove', e => {
+  const now = performance.now();
+  if (now - lastSpark > 45) {
+    lastSpark = now;
+    const sp = document.createElement('div');
+    sp.className = 'spark';
+    sp.textContent = Math.random() > .5 ? '✦' : '✧';
+    sp.style.fontSize = (9 + Math.random() * 14) + 'px';
+    fx.appendChild(sp);
+    const x = e.clientX, y = e.clientY, dx = (Math.random() - .5) * 50;
+    sp.animate([
+      { transform: 'translate(' + x + 'px,' + y + 'px) scale(1)', opacity: 1 },
+      { transform: 'translate(' + (x + dx) + 'px,' + (y + 30 + Math.random() * 40) + 'px) scale(.2) rotate(160deg)', opacity: 0 }
+    ], { duration: 800 + Math.random() * 500, easing: 'ease-out' }).onfinish = () => sp.remove();
+  }
+  const rx = (e.clientX / innerWidth - .5), ry = (e.clientY / innerHeight - .5);
+  tiltEl.style.transform = 'perspective(1000px) rotateY(' + (rx * 16) + 'deg) rotateX(' + (-ry * 12) + 'deg)';
+});
+document.addEventListener('pointerleave', () => { tiltEl.style.transform = ''; });
+
+/* title letters */
+function wavy(cls, text) {
+  const d = document.createElement('div');
+  d.className = cls;
+  let k = 0;
+  const words = text.split(' ');
+  words.forEach((w, wi) => {
+    const ws = document.createElement('span'); ws.className = 'w';
+    [...w].forEach(c => {
+      const s = document.createElement('span'); s.className = 'ch'; s.textContent = c;
+      s.style.setProperty('--k', k++);
+      ws.appendChild(s);
+    });
+    d.appendChild(ws);
+    if (wi < words.length - 1) d.appendChild(document.createTextNode(' '));
+  });
+  return d;
 }
 
 /* optional music (put song.mp3 next to app.py) */
@@ -554,7 +672,7 @@ setInterval(() => {
   if (document.hidden) return;
   spawnHeart(Math.random() * innerWidth, innerHeight + 10,
     { size: 10 + Math.random() * 16, faint: true, rise: innerHeight * (.5 + Math.random() * .6), dur: 6500 + Math.random() * 3500 });
-}, 1200);
+}, 650);
 
 function confettiShower(ms = 3500) {
   const t0 = performance.now();
@@ -609,7 +727,7 @@ DATA.pages.forEach((pg, i) => {
     page.appendChild(pol);
   }
 
-  const title = el('div', 'title reveal', pg.title || '');
+  const title = wavy('title', pg.title || '');
   title.style.setProperty('--i', 1);
   page.appendChild(title);
   const dv = el('div', 'divider reveal');
@@ -624,6 +742,7 @@ DATA.pages.forEach((pg, i) => {
     box.appendChild(first);
     (pg.reasons || []).forEach((r, k) => {
       const b = el('button', 'rbtn');
+      b.style.setProperty('--k', k);
       b.innerHTML = '<svg viewBox="0 0 24 24"><path d="' + HEART_PATH + '"/></svg><span>' + (k + 1) + '</span>';
       b.addEventListener('click', () => {
         b.classList.add('done');
@@ -674,6 +793,7 @@ DATA.pages.forEach((pg, i) => {
     cake.addEventListener('click', () => {
       if (blown) return; blown = true;
       cake.classList.add('blown');
+      const stg = document.querySelector('.stage'); stg.classList.add('shake'); setTimeout(() => stg.classList.remove('shake'), 750);
       hint.style.display = 'none';
       after.classList.add('show'); after.style.display = 'block';
       after.querySelectorAll('p').forEach((p, k) => { p.style.animation = 'rise .9s cubic-bezier(.2,.7,.2,1) both'; p.style.animationDelay = (k * .5 + .4) + 's'; });
@@ -703,6 +823,7 @@ const prev = document.getElementById('prev'), next = document.getElementById('ne
 let idx = 0, opened = false;
 
 function show(n) {
+  const was = idx;
   idx = Math.max(0, Math.min(pageEls.length - 1, n));
   pageEls.forEach((p, i) => {
     p.classList.toggle('active', i === idx);
@@ -712,12 +833,14 @@ function show(n) {
   prev.disabled = idx === 0;
   next.disabled = idx === pageEls.length - 1;
   if (pageEls[idx]) pageEls[idx].scrollTop = 0;
+  if (opened && was !== idx) { confettiRain(18); burst(innerWidth / 2, innerHeight * .82, 6); }
 }
 function openCard() {
   if (opened) return; opened = true;
   card.classList.add('opened');
   if (audio) audio.play().catch(() => {});
-  confettiRain(60);
+  confettiRain(140);
+  burst(innerWidth / 2, innerHeight / 2, 24);
   show(0);
   setTimeout(() => confettiShower(1800), 500);
 }
